@@ -3,7 +3,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -11,6 +12,9 @@ import { CreateIssuePage } from '../pages/create-issue/create-issue';
 import { IssueListPage } from '../pages/issue-list/issue-list';
 import { IssueMapPage } from '../pages/issue-map/issue-map';
 import { AuthProvider } from '../providers/auth/auth';
+import { LoginPage } from '../pages/login/login';
+import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-interceptor';
+
 
 @NgModule({
   declarations: [
@@ -18,12 +22,14 @@ import { AuthProvider } from '../providers/auth/auth';
     HomePage,
     CreateIssuePage,
     IssueListPage,
-    IssueMapPage
+    IssueMapPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClient
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -31,9 +37,11 @@ import { AuthProvider } from '../providers/auth/auth';
     HomePage,
     CreateIssuePage,
     IssueListPage,
-    IssueMapPage
+    IssueMapPage,
+    LoginPage
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorProvider, multi: true },
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },

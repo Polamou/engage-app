@@ -21,7 +21,6 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
     this.tabs = [
       { title: 'New Issue', icon: 'add', component: CreateIssuePage },
-      { title: 'Issue Map', icon: 'map', component: IssueMapPage },
       { title: 'Issue List', icon: 'list', component: IssueListPage }
     ];
 
