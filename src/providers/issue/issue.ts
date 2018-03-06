@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { config } from '../../app/config';
+import { Issue } from '../../models/issue';
 /*
   Generated class for the IssueProvider provider.
 
@@ -12,6 +14,12 @@ export class IssueProvider {
 
   constructor(public http: HttpClient) {
     console.log('Hello IssueProvider Provider');
+  }
+
+  getIssuesList(){
+    const url = `${config.apiUrl}/issues`;
+    return this.http.get<Array<Issue>>(url);
+
   }
 
 }
