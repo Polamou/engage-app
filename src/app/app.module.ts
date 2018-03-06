@@ -14,6 +14,7 @@ import { IssueMapPage } from '../pages/issue-map/issue-map';
 import { AuthProvider } from '../providers/auth/auth';
 import { LoginPage } from '../pages/login/login';
 import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-interceptor';
+import { IssueProvider } from '../providers/issue/issue';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-inte
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AuthProvider
+    AuthProvider,
+    IssueProvider
   ]
 })
 export class AppModule { }
