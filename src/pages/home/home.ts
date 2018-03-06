@@ -20,8 +20,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController) {
     this.tabs = [
-      { title: 'New Issue', icon: 'add', component: CreateIssuePage },
-      { title: 'Issue List', icon: 'list', component: IssueListPage }
+      { title: 'Issues', icon: 'alert', component: IssueListPage },
+      { title: 'New Issue', icon: 'add', component: CreateIssuePage }
     ];
 
   }
