@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -31,7 +32,8 @@ import { IssueProvider } from '../providers/issue/issue';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    LeafletModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

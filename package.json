@@ -4,6 +4,9 @@
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
   "private": true,
+  "config": {
+    "ionic_copy": "copy.config.js"
+  },
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
@@ -56,9 +59,6 @@
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       }
-    },
-    "config": {
-      "ionic_copy": "copy.config.js"
     },
     "platforms": [
       "android"
