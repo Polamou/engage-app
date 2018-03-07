@@ -18,7 +18,7 @@ export class IssueProvider {
 
   getIssuesList(){
     const url = `${config.apiUrl}/issues`;
-    return this.http.get<Array<Issue>>(url);
+    return this.http.get<Issue[]>(url);
 
   }
 
