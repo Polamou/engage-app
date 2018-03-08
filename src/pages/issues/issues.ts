@@ -31,14 +31,14 @@ export class IssuesPage {
     public issueProvider: IssueProvider,
     private geolocation: Geolocation
   ) {
-    let tileLayerUrl = `${config.mapboxApiUrl+config.mapboxToken}`;
+    let tileLayerUrl = `${config.mapboxApiUrl + config.mapboxToken}`;
     const tileLayerOptions = { maxZoom: 18 };
     this.mapOptions = {
       layers: [
         tileLayer(tileLayerUrl, tileLayerOptions)
       ],
-      zoom: 13,
-      center: latLng(46.778186, 6.641524)
+      zoom: 8,
+      center: latLng(48.3, 8.03)
     };
   }
 
@@ -47,16 +47,22 @@ export class IssuesPage {
     this.issueProvider.getIssuesList().subscribe(issues => {
       console.log('Issues loaded');
       this.issues = issues;
+      for (let i = 0; i < this.issues.length; i++) {
+        let mymark = marker([this.issues[i].location.coordinates[1], this.issues[i].location.coordinates[0]]);
+        mymark.addTo(this.map);
+      }
     });
     const geolocationPromise = this.geolocation.getCurrentPosition();
     geolocationPromise.then(position => {
       const coords = position.coords;
-      this.userLoc = new Marker([coords.latitude,coords.longitude]);
-      var layer = this.userLoc.addTo(this.map);
+      this.userLoc = new Marker([coords.latitude, coords.longitude]);
+      this.userLoc.addTo(this.map);
+      this.map.setView([coords.latitude, coords.longitude], 14);
       console.log(`User is at ${coords.longitude}, ${coords.latitude}`);
     }).catch(err => {
       console.warn(`Could not retrieve user position because: ${err.message}`);
     });
+
   }
   onMapReady(map: Map) {
     this.map = map;
