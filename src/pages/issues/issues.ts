@@ -31,7 +31,7 @@ export class IssuesPage {
     public issueProvider: IssueProvider,
     private geolocation: Geolocation
   ) {
-    let tileLayerUrl = `https://api.mapbox.com/styles/v1/timdlp/cjeic2jmt79od2sn7our4odb0/tiles/256/{z}/{x}/{y}?access_token=${config.mapboxToken}`;
+    let tileLayerUrl = `${config.mapboxApiUrl+config.mapboxToken}`;
     const tileLayerOptions = { maxZoom: 18 };
     this.mapOptions = {
       layers: [

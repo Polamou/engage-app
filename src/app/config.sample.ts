@@ -3,6 +3,7 @@ export const config = {
   apiUrl: 'https://example.com/api',
   qimgUrl: 'https://qimg.example.com/api',
   qimgSecret: 'hereComesAReallyLongTokenToLetYouIn',
-  mapboxToken: 'changeme'
+  mapboxApiUrl: 'yourApiUrl',
+  mapboxToken: 'changeme',
 
 }
