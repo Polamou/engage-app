@@ -8,11 +8,24 @@
 
   <ion-navbar>
     <ion-title>Profile</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)='logOut()'>
+        Logout <ion-icon name='log-out'></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <div>
+    <button ion-button (click)='goToEditProfile()'>Edit profile</button>
+  </div>
+  <div>
+    <button ion-button (click)='goToHelp()'>Help</button>
+  </div>
+  <div>
+    <button ion-button (click)='goToAbout()'>About</button>
+  </div>
 </ion-content>

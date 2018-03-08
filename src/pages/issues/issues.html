@@ -1,0 +1,37 @@
+<!--
+  Generated template for the IssueListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="view">
+      <ion-segment-button value="map">
+        <ion-icon name="map"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="list">
+        <ion-icon name="list"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class='map-container' [ngSwitch]="view">
+      <div class='map-container' [style.display]="view == 'map' ? 'block' : 'none'">
+        <div id="map" leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers' (leafletMapReady)='onMapReady($event)'></div>
+      </div>
+
+      <ion-list *ngSwitchCase="'list'">
+        <ion-item *ngFor="let issue of issues">
+          <ion-thumbnail item-start>
+            <img src="{{ issue.imageUrl}}">
+          </ion-thumbnail>
+          <h2>{{ issue.description }}</h2>
+          <p>{{ issue.issueTypeHref }}</p>
+          <button ion-button clear item-end>View</button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>

@@ -12,22 +12,32 @@ import { Camera } from '@ionic-native/camera';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CreateIssuePage } from '../pages/create-issue/create-issue';
-import { IssueListPage } from '../pages/issue-list/issue-list';
-import { IssueMapPage } from '../pages/issue-map/issue-map';
+import { IssuesPage } from '../pages/issues/issues';
 import { AuthProvider } from '../providers/auth/auth';
 import { LoginPage } from '../pages/login/login';
 import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-interceptor';
 import { IssueProvider } from '../providers/issue/issue';
+import { AboutPage } from '../pages/about/about';
+import { CreateAccountPage } from '../pages/create-account/create-account';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { HelpPage } from '../pages/help/help';
+import { ProfilePage } from '../pages/profile/profile';
+import { SingleIssuePage } from '../pages/single-issue/single-issue';
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    AboutPage,
+    CreateAccountPage,
     CreateIssuePage,
-    IssueListPage,
-    IssueMapPage,
-    LoginPage
+    EditProfilePage,
+    HelpPage,
+    IssuesPage,
+    LoginPage,
+    ProfilePage,
+    SingleIssuePage
   ],
   imports: [
     BrowserModule,
@@ -40,10 +50,15 @@ import { IssueProvider } from '../providers/issue/issue';
   entryComponents: [
     MyApp,
     HomePage,
+    AboutPage,
+    CreateAccountPage,
     CreateIssuePage,
-    IssueListPage,
-    IssueMapPage,
-    LoginPage
+    EditProfilePage,
+    HelpPage,
+    IssuesPage,
+    LoginPage,
+    ProfilePage,
+    SingleIssuePage
   ],
   providers: [
     Camera,
