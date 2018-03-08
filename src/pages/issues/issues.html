@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header> 
+<ion-header>
   <ion-toolbar>
     <ion-segment [(ngModel)]="view">
       <ion-segment-button value="map">
@@ -18,15 +18,20 @@
 </ion-header>
 
 <ion-content>
-    <div [ngSwitch]="view">
-      <div *ngSwitchCase="'map'">
-        <p>map</p>
+    <div class='map-container' [ngSwitch]="view">
+      <div class='map-container' *ngSwitchCase="'map'">
+        <div id="map" leaflet [leafletOptions]='mapOptions'></div>
       </div>
-  
+
       <ion-list *ngSwitchCase="'list'">
-        <button ion-item *ngFor="let issue of issues">
-          {{ issue.description }}
-        </button>
+        <ion-item *ngFor="let issue of issues">
+          <ion-thumbnail item-start>
+            <img src="https://loremflickr.com/320/320">
+          </ion-thumbnail>
+          <h2>{{ issue.description }}</h2>
+          <p>issueType</p>
+          <button ion-button clear item-end>View</button>
+        </ion-item>
       </ion-list>
     </div>
   </ion-content>
