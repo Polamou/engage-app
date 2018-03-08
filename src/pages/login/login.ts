@@ -5,6 +5,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AuthRequest } from '../../models/auth-request';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
+import { CreateAccountPage } from '../create-account/create-account';
 
 /**
  * Login page.
@@ -61,4 +62,9 @@ export class LoginPage {
       console.warn(`Authentication failed: ${err.message}`);
     });
   }
+
+  goToCreateAccount() {
+    this.navCtrl.push(CreateAccountPage);
+  }
+
 }
