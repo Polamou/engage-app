@@ -19,17 +19,17 @@
 
 <ion-content>
     <div class='map-container' [ngSwitch]="view">
-      <div class='map-container' *ngSwitchCase="'map'">
-        <div id="map" leaflet [leafletOptions]='mapOptions'></div>
+      <div class='map-container' [style.display]="view == 'map' ? 'block' : 'none'">
+        <div id="map" leaflet [leafletOptions]='mapOptions' (leafletMapReady)='onMapReady($event)'></div>
       </div>
 
       <ion-list *ngSwitchCase="'list'">
         <ion-item *ngFor="let issue of issues">
           <ion-thumbnail item-start>
-            <img src="https://loremflickr.com/320/320">
+            <img src="{{ issue.imageUrl}}">
           </ion-thumbnail>
           <h2>{{ issue.description }}</h2>
-          <p>issueType</p>
+          <p>{{ issue.issueTypeHref }}</p>
           <button ion-button clear item-end>View</button>
         </ion-item>
       </ion-list>

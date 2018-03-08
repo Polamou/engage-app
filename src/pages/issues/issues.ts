@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { latLng, MapOptions, tileLayer } from 'leaflet';
+import { latLng, MapOptions, tileLayer, Map } from 'leaflet';
 
 import { config } from '../../app/config';
 import { IssueProvider } from '../../providers/issue/issue';
@@ -21,6 +21,7 @@ export class IssuesPage {
   public issues: Issue[];
   view: string = "map";
   mapOptions: MapOptions;
+  map: Map;
 
   constructor(
     public navCtrl: NavController,
@@ -43,8 +44,17 @@ export class IssuesPage {
     this.issueProvider.getIssuesList().subscribe(issues => {
       console.log('Issues loaded');
       this.issues = issues;
-
     });
+  }
+
+  onMapReady(map: Map) {
+    this.map = map;
+    this.map.on('moveend', () => {
+      const center = this.map.getCenter();
+      console.log(`Map moved to ${center.lng}, ${center.lat}`);
+      this.map.invalidateSize();
+    });
+
   }
 
 }
