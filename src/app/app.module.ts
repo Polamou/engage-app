@@ -7,6 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { Camera } from '@ionic-native/camera';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -45,6 +46,7 @@ import { IssueProvider } from '../providers/issue/issue';
     LoginPage
   ],
   providers: [
+    Camera,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorProvider, multi: true },
     StatusBar,
     SplashScreen,

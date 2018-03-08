@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { latLng, MapOptions, Map, marker, Marker, tileLayer } from 'leaflet';
+import { Camera } from '@ionic-native/camera';
 
 /**
  * Generated class for the IssueMapPage page.
