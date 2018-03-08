@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { AuthProvider } from '../../providers/auth/auth';
-import { config } from '../../app/config';
+import { EditProfilePage } from '../edit-profile/edit-profile';
 
 /**
  * Generated class for the ProfilePage page.
@@ -30,6 +30,10 @@ export class ProfilePage {
 
   logOut() {
     this.auth.logOut();
+  }
+
+  goToEditProfile() {
+    this.navCtrl.push(EditProfilePage);
   }
 
 }
