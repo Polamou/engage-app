@@ -5,19 +5,19 @@ import { IssueProvider } from '../../providers/issue/issue';
 import { Issue } from '../../models/issue';
 
 /**
- * Generated class for the IssueListPage page.
+ * Generated class for the IssuesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
 @Component({
-  selector: 'page-issue-list',
-  templateUrl: 'issue-list.html',
+  selector: 'page-issues',
+  templateUrl: 'issues.html',
 })
-export class IssueListPage {
+export class IssuesPage {
   public issues: Issue[];
-
+  view: string = "map";
 
   constructor(
     public navCtrl: NavController,
@@ -27,7 +27,7 @@ export class IssueListPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad IssueListPage');
+    console.log('ionViewDidLoad IssuesPage');
     this.issueProvider.getIssuesList().subscribe(issues =>{
       console.log('Issues loaded');
       this.issues = issues;

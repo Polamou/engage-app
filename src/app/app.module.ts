@@ -12,8 +12,7 @@ import { Camera } from '@ionic-native/camera';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CreateIssuePage } from '../pages/create-issue/create-issue';
-import { IssueListPage } from '../pages/issue-list/issue-list';
-import { IssueMapPage } from '../pages/issue-map/issue-map';
+import { IssuesPage } from '../pages/issues/issues';
 import { AuthProvider } from '../providers/auth/auth';
 import { LoginPage } from '../pages/login/login';
 import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-interceptor';
@@ -35,8 +34,7 @@ import { SingleIssuePage } from '../pages/single-issue/single-issue';
     CreateIssuePage,
     EditProfilePage,
     HelpPage,
-    IssueListPage,
-    IssueMapPage,
+    IssuesPage,
     LoginPage,
     ProfilePage,
     SingleIssuePage
@@ -57,8 +55,7 @@ import { SingleIssuePage } from '../pages/single-issue/single-issue';
     CreateIssuePage,
     EditProfilePage,
     HelpPage,
-    IssueListPage,
-    IssueMapPage,
+    IssuesPage,
     LoginPage,
     ProfilePage,
     SingleIssuePage
