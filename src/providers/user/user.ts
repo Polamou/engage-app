@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { config } from '../../app/config';
+
+import { User } from '../../models/user';
+
 /*
   Generated class for the UserProvider provider.
 
@@ -12,6 +16,11 @@ export class UserProvider {
 
   constructor(public http: HttpClient) {
     console.log('Hello UserProvider Provider');
+  }
+
+  getUserList(){
+    const url = `${config.apiUrl}/users`;
+    return this.http.get<User[]>(url);
   }
 
 }
