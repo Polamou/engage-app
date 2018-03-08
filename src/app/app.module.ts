@@ -18,16 +18,28 @@ import { AuthProvider } from '../providers/auth/auth';
 import { LoginPage } from '../pages/login/login';
 import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-interceptor';
 import { IssueProvider } from '../providers/issue/issue';
+import { AboutPage } from '../pages/about/about';
+import { CreateAccountPage } from '../pages/create-account/create-account';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { HelpPage } from '../pages/help/help';
+import { ProfilePage } from '../pages/profile/profile';
+import { SingleIssuePage } from '../pages/single-issue/single-issue';
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    AboutPage,
+    CreateAccountPage,
     CreateIssuePage,
+    EditProfilePage,
+    HelpPage,
     IssueListPage,
     IssueMapPage,
-    LoginPage
+    LoginPage,
+    ProfilePage,
+    SingleIssuePage
   ],
   imports: [
     BrowserModule,
@@ -40,10 +52,16 @@ import { IssueProvider } from '../providers/issue/issue';
   entryComponents: [
     MyApp,
     HomePage,
+    AboutPage,
+    CreateAccountPage,
     CreateIssuePage,
+    EditProfilePage,
+    HelpPage,
     IssueListPage,
     IssueMapPage,
-    LoginPage
+    LoginPage,
+    ProfilePage,
+    SingleIssuePage
   ],
   providers: [
     Camera,
