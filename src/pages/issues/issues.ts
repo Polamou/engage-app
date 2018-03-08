@@ -47,10 +47,9 @@ export class IssuesPage {
     this.issueProvider.getIssuesList().subscribe(issues => {
       console.log('Issues loaded');
       this.issues = issues;
-      for (let i = 0; i < this.issues.length; i++) {
-        let mymark = marker([this.issues[i].location.coordinates[1], this.issues[i].location.coordinates[0]]);
-        mymark.addTo(this.map);
-      }
+      this.issues.forEach(issue =>{
+        this.createMarker(issue).addTo(this.map);
+      })
     });
     const geolocationPromise = this.geolocation.getCurrentPosition();
     geolocationPromise.then(position => {
@@ -71,6 +70,12 @@ export class IssuesPage {
       console.log(`Map moved to ${center.lng}, ${center.lat}`);
     });
 
+
+  }
+  createMarker(issue: Issue){
+    return marker([issue.location.coordinates[1],issue.location.coordinates[0]]).bindTooltip(issue.description).on('click',()=>{
+      console.log(issue.id);
+    });
   }
 
 }
