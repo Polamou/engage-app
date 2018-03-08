@@ -20,7 +20,7 @@
 <ion-content>
     <div class='map-container' [ngSwitch]="view">
       <div class='map-container' [style.display]="view == 'map' ? 'block' : 'none'">
-        <div id="map" leaflet [leafletOptions]='mapOptions' (leafletMapReady)='onMapReady($event)'></div>
+        <div id="map" leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers' (leafletMapReady)='onMapReady($event)'></div>
       </div>
 
       <ion-list *ngSwitchCase="'list'">
