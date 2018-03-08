@@ -44,7 +44,7 @@ export class IssuesPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssuesPage');
-    this.issueProvider.getIssuesList().subscribe(issues => {
+    this.issueProvider.getIssueList().subscribe(issues => {
       console.log('Issues loaded');
       this.issues = issues;
     });

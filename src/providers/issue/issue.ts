@@ -16,7 +16,7 @@ export class IssueProvider {
     console.log('Hello IssueProvider Provider');
   }
 
-  getIssuesList(){
+  getIssueList(){
     const url = `${config.apiUrl}/issues`;
     return this.http.get<Issue[]>(url);
 
