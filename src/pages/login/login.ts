@@ -6,6 +6,8 @@ import { AuthRequest } from '../../models/auth-request';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
 import { CreateAccountPage } from '../create-account/create-account';
+import { AboutPage } from '../about/about';
+import { HelpPage } from '../help/help';
 
 /**
  * Login page.
@@ -67,4 +69,12 @@ export class LoginPage {
     this.navCtrl.push(CreateAccountPage);
   }
 
+  goToAbout() {
+    this.navCtrl.push(AboutPage);
+  }
+
+  goToHelp() {
+    this.navCtrl.push(HelpPage);
+  }
+  
 }
