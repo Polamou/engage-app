@@ -47,7 +47,7 @@ export class ProfilePage {
   }
 
   goToEditProfile() {
-    this.navCtrl.push(EditProfilePage);
+    this.navCtrl.push(EditProfilePage, { user: this.user });
   }
 
   goToAbout() {
