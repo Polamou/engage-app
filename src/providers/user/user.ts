@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 import { config } from '../../app/config';
 
@@ -18,7 +19,7 @@ export class UserProvider {
     console.log('Hello UserProvider Provider');
   }
 
-  getUserList(){
+  getUserList(): Observable<User[]>{
     const url = `${config.apiUrl}/users`;
     return this.http.get<User[]>(url);
   }

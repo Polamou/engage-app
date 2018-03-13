@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 import { config } from '../../app/config';
 import { Issue } from '../../models/issue';
@@ -16,7 +17,7 @@ export class IssueProvider {
     console.log('Hello IssueProvider Provider');
   }
 
-  getIssueList(){
+  getIssueList(): Observable<Issue[]>{
     const url = `${config.apiUrl}/issues`;
     return this.http.get<Issue[]>(url);
 
