@@ -13,8 +13,12 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'single-issue.html',
 })
 export class SingleIssuePage {
+  public issueId: String;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log('Hello IssueProvider Provider');
+    this.issueId = navParams.get('issueId');
+    console.log(this.issueId);
   }
 
   ionViewDidLoad() {

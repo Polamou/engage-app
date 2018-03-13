@@ -6,6 +6,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { config } from '../../app/config';
 import { IssueProvider } from '../../providers/issue/issue';
 import { Issue } from '../../models/issue';
+import { SingleIssuePage } from '../single-issue/single-issue';
 
 /**
  * Generated class for the IssuesPage page.
@@ -65,6 +66,10 @@ export class IssuesPage {
       console.log(`Map moved to ${center.lng}, ${center.lat}`);
     });
 
+  }
+
+  goToSingleIssue(id: String) {
+    this.navCtrl.push(SingleIssuePage, { issueId: id });
   }
 
 }

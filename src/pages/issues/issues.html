@@ -30,7 +30,7 @@
           </ion-thumbnail>
           <h2>{{ issue.description }}</h2>
           <p>{{ issue.issueTypeHref }}</p>
-          <button ion-button clear item-end>View</button>
+          <button ion-button clear item-end (click)="gotoSingleIssue(issue.id)">View</button>
         </ion-item>
       </ion-list>
     </div>
