@@ -19,16 +19,15 @@
 
 
 <ion-content padding>
-
-  <ion-list>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="images/image.jpg">
-        </ion-thumbnail>
-        <h2>{{ user }}</h2>
-      </ion-item>
-    </ion-list>
-
+  <div>
+    <h2>{{ user.firstname }} {{ user.lastname }}</h2>
+    <ion-item>
+      <ion-icon name="person" item-start></ion-icon>Username: {{ user.name }} 
+    </ion-item>
+    <ion-item>
+      <ion-icon name="call" item-start></ion-icon>Phone: {{ user.phone }}         
+    </ion-item>
+  </div>
   <div>
     <button ion-button (click)='goToEditProfile()'>Edit profile</button>
   </div>

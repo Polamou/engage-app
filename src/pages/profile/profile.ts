@@ -28,8 +28,7 @@ export class ProfilePage {
   ) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+  ngOnInit() {
     this.auth.getUser().subscribe(user => {
       console.log('User loaded');
       this.user = user;
@@ -37,6 +36,10 @@ export class ProfilePage {
     }, err => {
       console.warn('Could not get user', err);
     });
+  };
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ProfilePage');
   }
 
   logOut() {
