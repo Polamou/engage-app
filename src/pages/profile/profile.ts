@@ -26,9 +26,6 @@ export class ProfilePage {
     public navParams: NavParams,
     private auth: AuthProvider
   ) {
-  }
-
-  ngOnInit() {
     this.auth.getUser().subscribe(user => {
       console.log('User loaded');
       this.user = user;
@@ -36,6 +33,9 @@ export class ProfilePage {
     }, err => {
       console.warn('Could not get user', err);
     });
+  }
+
+  ngOnInit() {
   };
 
   ionViewDidLoad() {
