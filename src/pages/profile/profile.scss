@@ -15,4 +15,9 @@ margin: auto;
 
 .footer{
   text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.ion-md-alert::before {
+  color: #72855F;
 }
