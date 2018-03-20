@@ -23,6 +23,7 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { HelpPage } from '../pages/help/help';
 import { ProfilePage } from '../pages/profile/profile';
 import { SingleIssuePage } from '../pages/single-issue/single-issue';
+import { UserProvider } from '../providers/user/user';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { SingleIssuePage } from '../pages/single-issue/single-issue';
     Geolocation,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthProvider,
-    IssueProvider
+    IssueProvider,
+    UserProvider
   ]
 })
 export class AppModule { }

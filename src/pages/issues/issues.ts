@@ -6,6 +6,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { config } from '../../app/config';
 import { IssueProvider } from '../../providers/issue/issue';
 import { Issue } from '../../models/issue';
+import { SingleIssuePage } from '../single-issue/single-issue';
 
 /**
  * Generated class for the IssuesPage page.
@@ -44,7 +45,7 @@ export class IssuesPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssuesPage');
-    this.issueProvider.getIssuesList().subscribe(issues => {
+    this.issueProvider.getIssueList().subscribe(issues => {
       console.log('Issues loaded');
       this.issues = issues;
       this.issues.forEach(issue =>{
@@ -76,6 +77,10 @@ export class IssuesPage {
     return marker([issue.location.coordinates[1],issue.location.coordinates[0]]).bindTooltip(issue.description).on('click',()=>{
       console.log(issue.id);
     });
+  }
+
+  goToSingleIssue(id: String) {
+    this.navCtrl.push(SingleIssuePage, { issueId: id });
   }
 
 }

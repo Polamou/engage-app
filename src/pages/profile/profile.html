@@ -19,15 +19,22 @@
 
 
 <ion-content padding>
-  <div class="EditProfile">
-    <button ion-button (click)='goToEditProfile()'>Edit profile</button>
+  <div>
+    <h2>{{ user?.firstname }} {{ user?.lastname }}</h2>
+    <ion-item>
+      <ion-icon name="person" item-start></ion-icon>Username: {{ user?.name }} 
+    </ion-item>
+    <ion-item>
+      <ion-icon name="call" item-start></ion-icon>Phone: {{ user?.phone }}         
+    </ion-item>
   </div>
-  </ion-content>
-    <ion-footer>
-  <div class="help">
-    <button ion-button small (click)='goToHelp()'>Help</button>
+  <div>
+    <button ion-button (click)="goToEditProfile()" >Edit profile</button>
   </div>
-  <div class="about">
-    <button ion-button small (click)='goToAbout()'>About</button>
+  <div>
+    <button ion-button (click)="goToHelp()">Help</button>
+  </div>
+  <div>
+    <button ion-button (click)="goToAbout()">About</button>
   </div>
 </ion-footer>
