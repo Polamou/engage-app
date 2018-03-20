@@ -59,13 +59,15 @@
 
     </div>
   </form>
-  <div>
-    <button ion-button (click)='goToCreateAccount()'>Create an account</button>
+  <div class="account">
+    <button  class="createAccount" ion-button block outline small (click)='goToCreateAccount()'>Create an account</button>
   </div>
-  <div>
-    <button ion-button (click)='goToHelp()'>Help</button>
+  </ion-content>
+<ion-footer>
+  <div class="help">
+    <button ion-button small (click)='goToHelp()'>Help</button>
   </div>
-  <div>
-    <button ion-button (click)='goToAbout()'>About</button>
+  <div class="about">
+    <button ion-button small (click)='goToAbout()'>About</button>
   </div>
-</ion-content>
+</ion-footer>

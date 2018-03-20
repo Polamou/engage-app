@@ -19,13 +19,15 @@
 
 
 <ion-content padding>
-  <div>
+  <div class="EditProfile">
     <button ion-button (click)='goToEditProfile()'>Edit profile</button>
   </div>
-  <div>
-    <button ion-button (click)='goToHelp()'>Help</button>
+  </ion-content>
+    <ion-footer>
+  <div class="help">
+    <button ion-button small (click)='goToHelp()'>Help</button>
   </div>
-  <div>
-    <button ion-button (click)='goToAbout()'>About</button>
+  <div class="about">
+    <button ion-button small (click)='goToAbout()'>About</button>
   </div>
-</ion-content>
+</ion-footer>

@@ -31,3 +31,31 @@ ion-img {
   margin-right: auto;
   margin-top: 40px;
 }
+
+button.ion-button.full.outline {
+  background-color: white;
+}
+
+.createAccount {
+  background-color: white;
+
+}
+.createAccount > .button-inner {
+  background-color: white;
+  color: #72855F;
+}
+
+.help{
+display:inline-block;
+margin: auto;
+
+}
+
+.about {
+display:inline-block;
+margin: auto;
+}
+
+.footer{
+  text-align: center;
+}
