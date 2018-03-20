@@ -29,7 +29,7 @@ export class ProfilePage {
     this.auth.getUser().subscribe(user => {
       console.log('User loaded');
       this.user = user;
-      console.log(this.user);
+      // console.log(this.user);
     }, err => {
       console.warn('Could not get user', err);
     });

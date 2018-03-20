@@ -20,12 +20,12 @@
 
 <ion-content padding>
   <div>
-    <h2>{{ user.firstname }} {{ user.lastname }}</h2>
+    <h2>{{ user?.firstname }} {{ user?.lastname }}</h2>
     <ion-item>
-      <ion-icon name="person" item-start></ion-icon>Username: {{ user.name }} 
+      <ion-icon name="person" item-start></ion-icon>Username: {{ user?.name }} 
     </ion-item>
     <ion-item>
-      <ion-icon name="call" item-start></ion-icon>Phone: {{ user.phone }}         
+      <ion-icon name="call" item-start></ion-icon>Phone: {{ user?.phone }}         
     </ion-item>
   </div>
   <div>
