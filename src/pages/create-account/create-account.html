@@ -19,13 +19,13 @@
 
       <!-- Name input -->
       <ion-item>
-        <ion-label floating>Name</ion-label>
+        <ion-label floating>Username</ion-label>
         <ion-input type='text' name='name'
                    #nameInput='ngModel' [(ngModel)]='name' required></ion-input>
       </ion-item>
       <!-- Error message displayed if the name is invalid -->
       <ion-item *ngIf='nameInput.invalid && nameInput.dirty' no-lines>
-        <p ion-text color='danger'>Name is required.</p>
+        <p ion-text color='danger'>Username is required.</p>
       </ion-item>
 
 
@@ -77,15 +77,15 @@
       </ion-item>
 
 
-      <!-- Repete password input -->
+      <!-- Repeat password input -->
       <ion-item>
-        <ion-label floating>Repete Password</ion-label>
-        <ion-input type='password' name='RepetePassword'
+        <ion-label floating>Repeat Password</ion-label>
+        <ion-input type='password' name='RepeatPassword'
                    #passwordInput='ngModel' [(ngModel)]='password' required></ion-input>
       </ion-item>
       <!-- Error message displayed if the password is invalid -->
       <ion-item *ngIf='passwordInput.invalid && passwordInput.dirty' no-lines>
-        <p ion-text color='danger'>Repete password is required.</p>
+        <p ion-text color='danger'>Repeat password is required.</p>
       </ion-item>
 
     </ion-list>
