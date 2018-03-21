@@ -23,4 +23,10 @@ export class IssueProvider {
 
   }
 
+  getIssue(id: String): Observable<Issue>{
+    const url = `${config.apiUrl}/issues/${id}`;
+    return this.http.get<Issue>(url);
+
+  }
+
 }
