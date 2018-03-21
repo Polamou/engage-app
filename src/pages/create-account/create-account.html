@@ -56,7 +56,7 @@
       <!-- phone input -->
       <ion-item>
         <ion-label floating>Phone</ion-label>
-        <ion-input type='text' pattern="07([0-9]{8})" name='phone'
+        <ion-input type='number' maxlength='10'  name='phone'
                    #numberInput='ngModel'  [(ngModel)]='phone' required></ion-input>
       </ion-item>
       <!-- Error message displayed if the name is invalid -->
@@ -69,7 +69,7 @@
       <!-- Password input -->
       <ion-item>
         <ion-label floating>Password</ion-label>
-        <ion-input type='password' name='password'
+        <ion-input type='password' id='password' name='password'
                    #passwordInput='ngModel' [(ngModel)]='password' required></ion-input>
       </ion-item>
       <!-- Error message displayed if the password is invalid -->
@@ -81,7 +81,7 @@
       <!-- Repeat password input -->
       <ion-item>
         <ion-label floating>Repeat Password</ion-label>
-        <ion-input type='password' name='RepeatPassword'
+        <ion-input type='password' id='RepeatPassword' name='RepeatPassword'
                    #passwordInput='ngModel' [(ngModel)]='repeatpassword' required></ion-input>
       </ion-item>
       <!-- Error message displayed if the password is invalid -->
