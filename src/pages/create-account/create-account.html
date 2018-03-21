@@ -56,13 +56,14 @@
       <!-- phone input -->
       <ion-item>
         <ion-label floating>Phone</ion-label>
-        <ion-input type='text' name='phone'
-                   #numberInput='ngModel' [(ngModel)]='phone' required></ion-input>
+        <ion-input type='number' maxlength=“10” name='phone'
+                   #numberInput='ngModel' maxlength=10 minlength=10  [(ngModel)]='phone' required></ion-input>
       </ion-item>
       <!-- Error message displayed if the name is invalid -->
       <ion-item *ngIf='numberInput.invalid && numberInput.dirty' no-lines>
         <p ion-text color='danger'>Phone is required.</p>
       </ion-item>
+
 
 
       <!-- Password input -->
