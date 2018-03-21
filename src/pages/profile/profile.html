@@ -22,18 +22,18 @@
 
   <div>
     <h2>{{ user?.firstname }} {{ user?.lastname }}</h2>
-    <ion-item>
-      <ion-icon name="person" item-start></ion-icon>Username: {{ user?.name }}
+    <ion-item class="profilePerson">
+      <ion-icon  name="person" item-start></ion-icon>Username: {{ user?.name }}
     </ion-item>
-    <ion-item>
-      <ion-icon name="call" item-start></ion-icon>Phone: {{ user?.phone }}
+    <ion-item class="profilePerson">
+      <ion-icon  name="call" item-start></ion-icon>Phone: {{ user?.phone }}
     </ion-item>
   </div>
 
   <div class="editProfile">
-    <button ion-button big (click)="goToEditProfile()" >Edit profile</button>
+    <button ion-button default (click)="goToEditProfile()" >Edit profile</button>
   </div>
-  
+
   </ion-content>
   <ion-footer>
   <div class="help">
