@@ -24,4 +24,9 @@ export class UserProvider {
     return this.http.get<User[]>(url);
   }
 
+  getUser(id: String): Observable<User>{
+    const url = `${config.apiUrl}/isuserssues/${id}`;
+    return this.http.get<User>(url);
+  }
+
 }
