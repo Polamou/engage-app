@@ -25,7 +25,7 @@ export class UserProvider {
   }
 
   getUser(id: String): Observable<User>{
-    const url = `${config.apiUrl}/isuserssues/${id}`;
+    const url = `${config.apiUrl}/users/${id}`;
     return this.http.get<User>(url);
   }
 
