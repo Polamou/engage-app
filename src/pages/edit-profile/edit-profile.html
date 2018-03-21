@@ -14,9 +14,57 @@
 
 
 <ion-content padding>
-  
+
   <!-- To do : show form  -->
 
-  Username: {{ user.name }}
+<form>
+
+    <!--  <p> Username: {{ user.name }}  </p>
+      <p> Phone: {{ user.phone }} </p> -->
+
+
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Username</ion-label>
+      <ion-input type='text' placeholder='{{ user.name }}' name='name'
+                 #nameInput='ngModel' [(ngModel)]='name' required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Phone</ion-label>
+      <ion-input type='text' placeholder='{{ user.phone }}' name='phone'
+                 #nameInput='ngModel' [(ngModel)]='phone' required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Current Password </ion-label>
+      <ion-input disabled="true" value="{{ user.password }}"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label stacked>New Password</ion-label>
+      <ion-input type='password'  name='RepeatPassword'
+                 #passwordInput='ngModel' [(ngModel)]='repeatpassword' required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Repeat New Password</ion-label>
+      <ion-input type='password'  name='RepeatNewPassword'
+                 #passwordInput='ngModel' [(ngModel)]='repeatnewpassword' required></ion-input>
+    </ion-item>
+
+      </ion-list>
+
+      <div padding>
+
+        <!-- Submit button -->
+        <button type='submit' ion-button block>Save changes</button>
+
+        <!-- Error message displayed if the login failed -->
+        <p *ngIf='loginError' ion-text color='danger'>Form invalid.</p>
+
+      </div>
+</form>
 
 </ion-content>
