@@ -33,4 +33,9 @@ export class UserProvider {
     const url = `${config.apiUrl}/users`;
     return this.http.post<User>(url, user);
   }
+
+  updateUser(id: String, params: Object): Observable<User>{
+    const url = `${config.apiUrl}/users/${id}`;
+    return this.http.patch<User>(url, params);
+  }
 }
