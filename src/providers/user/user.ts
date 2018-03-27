@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 
@@ -19,9 +19,14 @@ export class UserProvider {
     console.log('Hello UserProvider Provider');
   }
 
-  getUserList(): Observable<User[]>{
+  getUserList(page?: number, pageSize?: number, sort?: string): Observable<User[]>{
     const url = `${config.apiUrl}/users`;
-    return this.http.get<User[]>(url);
+    var httpParams: any = {};
+    if(!page === false){httpParams.page = page.toString()};
+    if(!pageSize === false){httpParams.pageSize = pageSize.toString()};
+    if(!sort === false){httpParams.sort = sort};
+    const options = {"params": httpParams}
+    return this.http.get<User[]>(url, options);
   }
 
   getUser(id: String): Observable<User>{
