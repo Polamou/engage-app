@@ -29,4 +29,8 @@ export class UserProvider {
     return this.http.get<User>(url);
   }
 
+  addUser(user: Object): Observable<User>{
+    const url = `${config.apiUrl}/users`;
+    return this.http.post<User>(url, user);
+  }
 }
