@@ -1,11 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
-import {  FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { AuthRequest } from '../../models/auth-request';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
+
+import { UserProvider } from '../../providers/user/user';
+import { User } from '../../models/user';
+import { UserCreation } from '../../models/user-creation';
 
 /**
  * Generated class for the CreateAccountPage page.
@@ -32,21 +36,32 @@ export class CreateAccountPage {
   loginError: boolean;
 
   /**
+   * This object will be updated when the user edits the form
+   */
+  userCreation: UserCreation;
+
+  /**
    * The login form.
    */
   @ViewChild(NgForm)
   form: NgForm;
 
+  constructor(
+    private auth: AuthProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public userProvider: UserProvider,
+  ) {
+    this.userCreation = new UserCreation();
+    this.authRequest = new AuthRequest();
 
-  constructor(private auth: AuthProvider, private navCtrl: NavController, public navParams: NavParams) {
-        this.authRequest = new AuthRequest();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateAccountPage');
   }
 
-  onSubmit($event) {
+  onSubmit($event){
 
     // Prevent default HTML form behavior.
     $event.preventDefault();
@@ -59,11 +74,26 @@ export class CreateAccountPage {
     // Hide any previous login error.
     this.loginError = false;
 
-    // Perform the authentication request to the API.
-    this.auth.logIn(this.authRequest).subscribe(undefined, err => {
-      this.loginError = true;
-      console.warn(`Authentication failed: ${err.message}`);
+    // Set the defaults role
+    this.userCreation.roles = ['citizen'];
+
+    this.userProvider.addUser(this.userCreation).subscribe(userResponse => {
+      console.log('user info sent to API');
+      console.log(userResponse);
+      
+      // If the user was successfully created,
+      // perform the authentication request to the API with the set params.
+      this.authRequest.name = this.userCreation.name;
+      this.authRequest.password = this.userCreation.password;
+      
+      this.auth.logIn(this.authRequest).subscribe(undefined, err => {
+        this.loginError = true;
+        console.warn(`Authentication failed: ${err.message}`);
+      });
+    },
+    err => {
+      console.warn(`Account creation failed: ${err.message}`);
     });
   }
-
+  
 }

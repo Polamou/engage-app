@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+
+import { UserProvider } from '../../providers/user/user';
 import { User } from '../../models/user';
 import { NgForm } from '@angular/forms';
 import {  FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -31,7 +33,7 @@ export class EditProfilePage {
  * If true, it means that the authentication API has return a failed response
  * (probably because the name or password is incorrect).
  */
-loginError: boolean;
+  loginError: boolean;
 
   /**
    * The login form.
@@ -39,7 +41,11 @@ loginError: boolean;
   @ViewChild(NgForm)
   form: NgForm;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public userProvider: UserProvider
+  ) {
     this.user = navParams.get('user');
   }
 
@@ -60,8 +66,19 @@ loginError: boolean;
 
   // Hide any previous login error.
   this.loginError = false;
-
-
+  
 }
+
+  updateUser(){
+    var userPhone = Math.floor((Math.random() * 1000) + 1000);
+    var user = {
+      "phone": userPhone
+    };
+
+    this.userProvider.updateUser(this.user.id, user).subscribe(userResponse => {
+      console.log('user info sent to API');
+      console.log(userResponse);
+    });
+  }
 
 }
