@@ -9,7 +9,7 @@ import { HomePage } from '../home/home';
 
 import { UserProvider } from '../../providers/user/user';
 import { User } from '../../models/user';
-import { UserCreation } from '../../models/user-creation';
+import { NewUser } from '../../models/new-user';
 
 /**
  * Generated class for the CreateAccountPage page.
@@ -38,7 +38,7 @@ export class CreateAccountPage {
   /**
    * This object will be updated when the user edits the form
    */
-  userCreation: UserCreation;
+  newUser: NewUser;
 
   /**
    * The login form.
@@ -52,7 +52,7 @@ export class CreateAccountPage {
     public navParams: NavParams,
     public userProvider: UserProvider,
   ) {
-    this.userCreation = new UserCreation();
+    this.newUser = new NewUser();
     this.authRequest = new AuthRequest();
 
   }
@@ -75,16 +75,16 @@ export class CreateAccountPage {
     this.loginError = false;
 
     // Set the defaults role
-    this.userCreation.roles = ['citizen'];
+    this.newUser.roles = ['citizen'];
 
-    this.userProvider.addUser(this.userCreation).subscribe(userResponse => {
+    this.userProvider.addUser(this.newUser).subscribe(userResponse => {
       console.log('user info sent to API');
       console.log(userResponse);
       
       // If the user was successfully created,
       // perform the authentication request to the API with the set params.
-      this.authRequest.name = this.userCreation.name;
-      this.authRequest.password = this.userCreation.password;
+      this.authRequest.name = this.newUser.name;
+      this.authRequest.password = this.newUser.password;
       
       this.auth.logIn(this.authRequest).subscribe(undefined, err => {
         this.loginError = true;

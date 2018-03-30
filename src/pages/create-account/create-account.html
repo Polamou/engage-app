@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>CreateAccount</ion-title>
+    <ion-title>Create a new account</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -21,7 +21,7 @@
       <ion-item>
         <ion-label floating>Username</ion-label>
         <ion-input type='text' name='name'
-                   #nameInput='ngModel' [(ngModel)]='userCreation.name' required></ion-input>
+                   #nameInput='ngModel' [(ngModel)]='newUser.name' required></ion-input>
       </ion-item>
       <!-- Error message displayed if the name is invalid -->
       <ion-item *ngIf='nameInput.invalid && nameInput.dirty' no-lines>
@@ -33,7 +33,7 @@
       <ion-item>
         <ion-label floating>Firstname</ion-label>
         <ion-input type='text' name='firstName'
-                   #nameInput='ngModel' [(ngModel)]='userCreation.firstname' required></ion-input>
+                   #nameInput='ngModel' [(ngModel)]='newUser.firstname' required></ion-input>
       </ion-item>
       <!-- Error message displayed if the firstname is invalid -->
       <ion-item *ngIf='nameInput.invalid && nameInput.dirty' no-lines>
@@ -45,7 +45,7 @@
       <ion-item>
         <ion-label floating>Lastname</ion-label>
         <ion-input type='text' name='lastName'
-                   #nameInput='ngModel' [(ngModel)]='userCreation.lastname' required></ion-input>
+                   #nameInput='ngModel' [(ngModel)]='newUser.lastname' required></ion-input>
       </ion-item>
       <!-- Error message displayed if the name is invalid -->
       <ion-item *ngIf='nameInput.invalid && nameInput.dirty' no-lines>
@@ -57,7 +57,7 @@
       <ion-item>
         <ion-label floating>Phone</ion-label>
         <ion-input type='number' maxlength='10'  name='phone'
-                   #numberInput='ngModel'  [(ngModel)]='userCreation.phone' required></ion-input>
+                   #numberInput='ngModel'  [(ngModel)]='newUser.phone' required></ion-input>
       </ion-item>
       <!-- Error message displayed if the name is invalid -->
       <ion-item *ngIf='nameInput.invalid && nameInput.dirty' no-lines>
@@ -70,7 +70,7 @@
       <ion-item>
         <ion-label floating>Password</ion-label>
         <ion-input type='password' id='password' name='password'
-                   #passwordInput='ngModel' [(ngModel)]='userCreation.password' required></ion-input>
+                   #passwordInput='ngModel' [(ngModel)]='newUser.password' required></ion-input>
       </ion-item>
       <!-- Error message displayed if the password is invalid -->
       <ion-item *ngIf='passwordInput.invalid && passwordInput.dirty' no-lines>
