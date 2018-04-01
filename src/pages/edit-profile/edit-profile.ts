@@ -1,10 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Observable } from 'rxjs/Rx';
 
 import { UserProvider } from '../../providers/user/user';
 import { User } from '../../models/user';
 import { NgForm } from '@angular/forms';
-import {  FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { AuthRequest } from '../../models/auth-request';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -21,22 +22,11 @@ import { AuthProvider } from '../../providers/auth/auth';
   templateUrl: 'edit-profile.html',
 })
 export class EditProfilePage {
+  public userId: any;
   public user: User;
 
   /**
-   * This authentication request object will be updated when the user
-   * edits the login form. It will then be sent to the API.
-   */
-  authRequest: AuthRequest;
-
-  /**
- * If true, it means that the authentication API has return a failed response
- * (probably because the name or password is incorrect).
- */
-  loginError: boolean;
-
-  /**
-   * The login form.
+   * The update form.
    */
   @ViewChild(NgForm)
   form: NgForm;
@@ -46,7 +36,14 @@ export class EditProfilePage {
     public navParams: NavParams,
     public userProvider: UserProvider
   ) {
-    this.user = navParams.get('user');
+    // Get the userId from navParams
+    this.userId = navParams.get('userId');
+    // Request fresh info about the user from the API
+    this.userProvider.getUser(this.userId).subscribe(user => {
+      console.log('user info requested from API');
+      console.log(user);
+      this.user = user;
+    });
   }
 
   ionViewDidLoad() {
@@ -56,29 +53,20 @@ export class EditProfilePage {
 
   onSubmit($event) {
 
-  // Prevent default HTML form behavior.
-  $event.preventDefault();
+    // Prevent default HTML form behavior.
+    $event.preventDefault();
 
-  // Do not do anything if the form is invalid.
-  if (this.form.invalid) {
-    return;
-  }
+    // Do not do anything if the form is invalid.
+    if (this.form.invalid) {
+      return;
+    }
 
-  // Hide any previous login error.
-  this.loginError = false;
-  
-}
-
-  updateUser(){
-    var userPhone = Math.floor((Math.random() * 1000) + 1000);
-    var user = {
-      "phone": userPhone
-    };
-
-    this.userProvider.updateUser(this.user.id, user).subscribe(userResponse => {
+    this.userProvider.updateUser(this.userId, this.user).subscribe(updatedUser => {
       console.log('user info sent to API');
-      console.log(userResponse);
+      console.log(updatedUser);
+      this.user = updatedUser;
+      // to do:
+      // show a message on the page to confirm the user was updated
     });
   }
-
 }
