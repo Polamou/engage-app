@@ -5,6 +5,7 @@ import { Observable, ReplaySubject } from 'rxjs/Rx';
 import { config } from '../../app/config';
 
 import { User } from '../../models/user';
+import { NewUser } from '../../models/new-user';
 
 /*
   Generated class for the UserProvider provider.
@@ -34,7 +35,7 @@ export class UserProvider {
     return this.http.get<User>(url);
   }
 
-  addUser(user: Object): Observable<User>{
+  addUser(user: NewUser): Observable<User>{
     const url = `${config.apiUrl}/users`;
     return this.http.post<User>(url, user);
   }
