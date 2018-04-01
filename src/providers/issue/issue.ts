@@ -4,6 +4,7 @@ import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 import { config } from '../../app/config';
 import { Issue } from '../../models/issue';
+import { NewIssue } from '../../models/new-issue';
 /*
   Generated class for the IssueProvider provider.
 
@@ -29,4 +30,13 @@ export class IssueProvider {
 
   }
 
+  addIssue(issue: NewIssue): Observable<Issue>{
+    const url = `${config.apiUrl}/issues`;
+    return this.http.post<Issue>(url, issue);
+  }
+
+  updateIssue(id: String, params: Object): Observable<Issue>{
+    const url = `${config.apiUrl}/issues/${id}`;
+    return this.http.patch<Issue>(url, params);
+  }
 }
