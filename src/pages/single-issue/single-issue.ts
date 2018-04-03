@@ -29,14 +29,15 @@ export class SingleIssuePage {
     this.issueId = navParams.get('issueId');
     console.log(this.issueId);
 
-    // test function - retrieves comment for current issue
-    this.getComments();
-
     this.issueProvider.getIssue(this.issueId).subscribe(issue => {
       console.log('Issue loaded');
       this.issue = issue;
       console.log(this.issue);
     });
+
+    // test function - retrieves comment for current issue
+    this.addComment();
+    this.getComments();
   }
 
   ionViewDidLoad() {
@@ -49,6 +50,15 @@ export class SingleIssuePage {
       console.log(comments);
     }), err => {
       console.warn('Could not get comments', err);
+    };
+  }
+
+  addComment(){
+    this.issueProvider.addComment(this.issueId, "A wise comment.").subscribe(comment => {
+      console.log('New comment sent');
+      console.log(comment);
+    }), err => {
+      console.warn('Could not save new comment', err);
     };
   }
 
