@@ -35,11 +35,12 @@ export class IssuesPage {
     let tileLayerUrl = `${config.mapboxApiUrl + config.mapboxToken}`;
     const tileLayerOptions = { maxZoom: 18 };
     this.mapOptions = {
+      zoomControl:false,
       layers: [
         tileLayer(tileLayerUrl, tileLayerOptions)
       ],
       zoom: 8,
-      center: latLng(48.3, 8.03)
+      center: latLng(46.7, 7.5)
     };
   }
 
@@ -49,6 +50,7 @@ export class IssuesPage {
       console.log('Issues loaded');
       this.issues = issues;
       this.issues.forEach(issue =>{
+        console.log(issue);
         this.createMarker(issue).addTo(this.map);
       })
     });
