@@ -50,4 +50,13 @@ export class IssueProvider {
     return this.http.delete<Object>(url);
   }
 
+  searchIssues(searchParams: Object, page?: number, pageSize?: number, sort?: string): Observable<Issue[]>{
+    const url = `${config.apiUrl}/issues/searches`;
+    var httpParams: any = {};
+    if(!page === false){httpParams.page = page.toString()};
+    if(!pageSize === false){httpParams.pageSize = pageSize.toString()};
+    if(!sort === false){httpParams.sort = sort};
+    const options = {"params": httpParams}
+    return this.http.post<Issue[]>(url, searchParams, options);
+  }
 }
