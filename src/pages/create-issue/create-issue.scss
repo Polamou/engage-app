@@ -1,8 +1,13 @@
 page-create-issue ion-content {
 
+  .button-inner, .alert-wrapper button span.button-inner{
+    background-color: inherit;
+  }
+  .map-container{
+    height: 30%;
+  }
+  #map{
+    height: 100%;
+  }
 
-}
-
-.button-inner {
-  color: white;
 }

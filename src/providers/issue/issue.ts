@@ -20,7 +20,7 @@ export class IssueProvider {
   }
 
   getIssueList(page?: number, pageSize?: number, search?: string): Observable<Issue[]>{
-    const url = `${config.apiUrl}/issues`;
+    const url = `${config.apiUrl}/issues?include=issueType`;
     var httpParams: any = {};
     if(!page === false){httpParams.page = page.toString()};
     if(!pageSize === false){httpParams.pageSize = pageSize.toString()};
@@ -31,7 +31,7 @@ export class IssueProvider {
   }
 
   getIssue(id: String): Observable<Issue>{
-    const url = `${config.apiUrl}/issues/${id}`;
+    const url = `${config.apiUrl}/issues/${id}?include=issueType&include=creator`;
     return this.http.get<Issue>(url);
 
   }
@@ -62,7 +62,7 @@ export class IssueProvider {
   }
 
   getIssueCommentList(issueId: String, page?: number, pageSize?: number): Observable<Comment[]>{
-    const url = `${config.apiUrl}/issues/${issueId}/comments`;
+    const url = `${config.apiUrl}/issues/${issueId}/comments?include=author`;
     var httpParams: any = {};
     if(!page === false){httpParams.page = page.toString()};
     if(!pageSize === false){httpParams.pageSize = pageSize.toString()};

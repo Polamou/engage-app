@@ -1,3 +1,33 @@
 page-single-issue {
+    $rejected: #FF4136 ;
+    $new: #0074D9;
+    $inprogress: #FFDC00;
+    $completed: #2ECC40;
 
+
+
+    .issue-tags{
+        margin-top:20px;
+    }
+    .issue-tags span.tags-title, .issue-type span.issue-type-title, .issue-status span.issue-status-title{
+        font-weight: bold;
+        padding-right: 0.7rem;
+    }
+    .issue-tags span.issue-tag:after{
+        content:","
+    }
+    .issue-tags span.issue-tag:last-child:after{
+        content:""
+    }
+
+    .issue-status-rejected{
+        color:$rejected;
+        font-style: italic;
+    }
+    .issue-status-new{
+        color:$new;
+    }
+    .issue-status-inProgress{
+        color:$inprogress;
+    }
 }

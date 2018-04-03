@@ -1,61 +1,60 @@
 page-login  {
 
-}
-
-.button-inner {
-  background-color: #72855F;
-}
-
-.button {
-  background-color: #72855F;
-}
-
-ion-item {
-  color: #72855F;
-}
-
-.item item-block item-md {
-  color: #49632A;
-}
-
-.toolbar-background {
-  background-color: #72855F;
-  opacity: 0.2;
-
-}
-
-ion-img {
-  background-color: white;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 40px;
-}
-
-button.ion-button.full.outline {
-  background-color: white;
-}
-
-.createAccount {
-  background-color: white;
-
-}
-.createAccount > .button-inner {
-  background-color: white;
-  color: #72855F;
-}
-
-.help{
-display:inline-block;
-margin: auto;
-
-}
-
-.about {
-display:inline-block;
-margin: auto;
-}
-
-.footer{
-  text-align: center;
+  .button-inner {
+    background-color: #72855F;
+  }
+  
+  .button {
+    background-color: #72855F;
+  }
+  
+  ion-item {
+    color: #72855F;
+  }
+  
+  .item item-block item-md {
+    color: #49632A;
+  }
+  
+  .toolbar-background {
+    background-color: #72855F;
+    opacity: 0.2;
+  
+  }
+  
+  ion-img {
+    background-color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+  }
+  
+  button.ion-button.full.outline {
+    background-color: white;
+  }
+  
+  .createAccount {
+    background-color: white;
+  
+  }
+  .createAccount > .button-inner {
+    background-color: white;
+    color: #72855F;
+  }
+  
+  .help{
+  display:inline-block;
+  margin: auto;
+  
+  }
+  
+  .about {
+  display:inline-block;
+  margin: auto;
+  }
+  
+  .footer{
+    text-align: center;
+  }  
 }

@@ -7,12 +7,47 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>SingleIssue</ion-title>
+    <ion-title>Issue</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+    <img *ngIf="issue?.additionalImageUrls.length === 0" src="{{ issue?.imageUrl }}" width="100%" height="auto"/>
+    <ion-slides *ngIf="issue?.additionalImageUrls.length > 0" style="height:auto;">
+      <ion-slide>
+          <img src="{{ issue?.imageUrl }}" width="100%" height="auto"/>
+      </ion-slide>
+      <ion-slide *ngFor="let imageUrl of issue?.additionalImageUrls">
+        <img src="{{ imageUrl }}" alt="issueImg" width="100%" height="auto" />
+      </ion-slide>
+    </ion-slides>
+    <ion-item padding text-wrap>
+      <h2 class="descr-title">Description</h2>
+      <p class="descr-content">{{ issue?.description }}</p>
+      <div class="issue-tags">
+      <span class="tags-title">Tags :</span>
+      <span *ngFor="let tag of issue?.tags" class="issue-tag"> {{ tag }}</span>
+    </div>
+    <div class="issue-type">
+      <span class="issue-type-title">Type :</span>
+      <span class="issue-type-content">{{ issue?.issueType.name }}</span>
+    </div>
+    <div class="issue-status">
+        <span class="issue-status-title">Status :</span>
+        <span class="issue-status-content issue-status-{{ issue?.state }}">{{ issue?.state }}</span>
+      </div>
+      <div class="issue-other-infos">
+          <p>Created by {{ issue?.creator.name }}, on {{ issue?.createdAt | date : medium }}</p>
+          <p *ngIf="issue?.updatedAt">Last update on {{ issue?.updatedAt | date : medium }}</p>
+        </div>
+    </ion-item>
+    <ion-list>
+      <ion-list-header>Comments</ion-list-header>
+      <ion-item text-wrap *ngFor="let comment of comments">
+        <h4>{{ comment.author.name }}</h4>
+        <p>{{ comment.text }}</p>
+      </ion-item>
+    </ion-list>
 </ion-content>

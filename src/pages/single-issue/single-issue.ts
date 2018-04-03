@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 import { IssueProvider } from '../../providers/issue/issue';
 
 import { Issue } from '../../models/issue';
+import { Comment } from '../../models/comment';
+import { User } from '../../models/user';
+
+import { CreateIssuePage } from '../create-issue/create-issue';
 
 /**
  * Generated class for the SingleIssuePage page.
@@ -19,35 +23,36 @@ import { Issue } from '../../models/issue';
 export class SingleIssuePage {
   public issueId: String;
   public issue: Issue;
+  public comments: Comment[];
+  public user: User;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public viewCtrl: ViewController,
     public issueProvider: IssueProvider
   ) {
-    console.log('Hello IssueProvider Provider');
     this.issueId = navParams.get('issueId');
-    console.log(this.issueId);
-
+    this.comments = [];
     this.issueProvider.getIssue(this.issueId).subscribe(issue => {
       console.log('Issue loaded');
       this.issue = issue;
       console.log(this.issue);
     });
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SingleIssuePage');
+    
 
     // test function - retrieves comment for current issue
     this.addComment();
     this.getComments();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SingleIssuePage');
-  }
-
   getComments() {
     this.issueProvider.getIssueCommentList(this.issueId).subscribe(comments => {
-      console.log('Comments requested');
-      console.log(comments);
+      this.comments = comments;
     }), err => {
       console.warn('Could not get comments', err);
     };
@@ -56,7 +61,7 @@ export class SingleIssuePage {
   addComment(){
     this.issueProvider.addComment(this.issueId, "A wise comment.").subscribe(comment => {
       console.log('New comment sent');
-      console.log(comment);
+      //console.log(comment);
     }), err => {
       console.warn('Could not save new comment', err);
     };

@@ -8,6 +8,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { Camera } from '@ionic-native/camera';
+import {IonTagsInputModule} from "ionic-tags-input";
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -24,6 +25,7 @@ import { HelpPage } from '../pages/help/help';
 import { ProfilePage } from '../pages/profile/profile';
 import { SingleIssuePage } from '../pages/single-issue/single-issue';
 import { UserProvider } from '../providers/user/user';
+import { IssuetypeProvider } from '../providers/issuetype/issuetype';
 
 
 @NgModule({
@@ -45,7 +47,8 @@ import { UserProvider } from '../providers/user/user';
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    LeafletModule.forRoot()
+    LeafletModule.forRoot(),
+    IonTagsInputModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -70,7 +73,8 @@ import { UserProvider } from '../providers/user/user';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthProvider,
     IssueProvider,
-    UserProvider
+    UserProvider,
+    IssuetypeProvider
   ]
 })
 export class AppModule { }
