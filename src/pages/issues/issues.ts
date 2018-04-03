@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { latLng, MapOptions, tileLayer, Map, marker, Marker, Icon } from 'leaflet';
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -7,6 +7,7 @@ import { config } from '../../app/config';
 import { IssueProvider } from '../../providers/issue/issue';
 import { Issue } from '../../models/issue';
 import { SingleIssuePage } from '../single-issue/single-issue';
+import { CreateIssuePage } from '../create-issue/create-issue';
 
 /**
  * Generated class for the IssuesPage page.
@@ -29,6 +30,7 @@ export class IssuesPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public modalCtrl: ModalController,
     public issueProvider: IssueProvider,
     private geolocation: Geolocation
   ) {
@@ -81,7 +83,7 @@ export class IssuesPage {
   }
   createMarker(issue: Issue){
     return marker([issue.location.coordinates[1],issue.location.coordinates[0]]).bindTooltip(issue.description).on('click',()=>{
-      this.navCtrl.push(SingleIssuePage, {issueId:issue.id });
+      this.goToSingleIssue(issue.id);
     });
   }
 
@@ -89,6 +91,11 @@ export class IssuesPage {
     this.navCtrl.push(SingleIssuePage, { issueId: id });
   }
 
+  openModalCreateIssue(){
+      let modal = this.modalCtrl.create(CreateIssuePage,{userLoc:this.userLoc});
+      modal.present();
+  }
+  
   filterIssues(){
     var search = "Raeh";
     

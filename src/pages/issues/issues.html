@@ -21,18 +21,18 @@
     <div class='map-container' [ngSwitch]="view">
       <div class='map-container' [style.display]="view == 'map' ? 'block' : 'none'">
         <ion-fab bottom right style="z-index:1120;">
-          <button ion-fab><ion-icon name="add"></ion-icon></button>
+          <button ion-fab (click)="openModalCreateIssue()"><ion-icon name="add"></ion-icon></button>
         </ion-fab>
         <div id="map" leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers' (leafletMapReady)='onMapReady($event)'></div>
       </div>
 
       <ion-list *ngSwitchCase="'list'">
         <ion-item *ngFor="let issue of issues">
-          <ion-thumbnail item-start>
-            <img src="{{ issue.imageUrl}}">
+          <ion-thumbnail item-start *ngIf="issue?.imageUrl">
+            <img src="{{ issue?.imageUrl}}">
           </ion-thumbnail>
-          <h2>{{ issue.description }}</h2>
-          <p>{{ issue.issueTypeHref }}</p>
+          <h2>{{ issue?.description }}</h2>
+          <p>{{ issue?.issueType.name }}</p>
           <button ion-button clear item-end (click)="goToSingleIssue(issue.id)">View</button>
         </ion-item>
       </ion-list>

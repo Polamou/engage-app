@@ -5,15 +5,45 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>CreateIssue</ion-title>
-  </ion-navbar>
-
+  <ion-toolbar>
+    <ion-title>
+      New Issue
+    </ion-title>
+    <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+          <span ion-text color="primary">Cancel</span>
+        </button>
+      </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-
-
-<ion-content padding>
-  Let's Create an Issue
+<ion-content>
+  <div class="map-container">
+      <div id="map" leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers' (leafletMapReady)='onMapReady($event)'></div>
+  </div>
+  <div class="issue-info">
+      <ion-item>
+          <ion-label floating>Description</ion-label>
+          <ion-input type='text' name='name'
+                     #descrInput='ngModel' [(ngModel)]='newIssue.description' required></ion-input>
+        </ion-item>
+        <!-- Error message displayed if the name is invalid -->
+        <ion-item *ngIf='descrInput.invalid && descrInput.dirty' no-lines>
+          <p ion-text color='danger'>Description is required.</p>
+        </ion-item>
+        <ion-item>
+            <ion-label>Issue Type</ion-label>
+            <ion-select #issueTypeSelect='ngModel' [(ngModel)]='newIssue.issueType' required>
+              <ion-option *ngFor="let issueType of issueTypes" value="issueType.id">{{ issueType.name }}</ion-option>
+            </ion-select>
+          </ion-item>
+          <!-- Error message displayed if the name is invalid -->
+          <ion-item *ngIf='issueTypeSelect.invalid && issueTypeSelect.dirty' no-lines>
+            <p ion-text color='danger'>Description is required.</p>
+          </ion-item>
+          <ion-tags-input [(ngModel)]="tags" [separatorStr]="','" padding></ion-tags-input>
+  </div>
+  <ion-fab bottom right>
+      <button ion-fab (click)="submitIssue()"><ion-icon name="checkmark"></ion-icon></button>
+  </ion-fab>
 </ion-content>

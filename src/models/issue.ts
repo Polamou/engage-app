@@ -9,6 +9,7 @@ export class Issue {
   imageUrl: string;
   additionalImageUrls: string[];
   issueTypeHref: string;
+  issueType: string;
   state: string;
   location: {
     type: "Point";
