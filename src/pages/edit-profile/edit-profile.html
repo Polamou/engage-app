@@ -21,19 +21,19 @@
   <ion-list>
     <ion-item>
       <ion-label stacked>Username</ion-label>
-      <ion-input type='text' placeholder='{{ user.name }}' name='name'
+      <ion-input type='text' placeholder='{{ user?.name }}' name='name'
                  #nameInput='ngModel' [(ngModel)]='name' required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Phone</ion-label>
-      <ion-input type='text' placeholder='{{ user.phone }}' name='phone'
+      <ion-input type='text' placeholder='{{ user?.phone }}' name='phone'
                  #nameInput='ngModel' [(ngModel)]='phone' required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Current Password </ion-label>
-      <ion-input disabled="true" value="{{ user.password }}"></ion-input>
+      <ion-input disabled="true" value="{{ user?.password }}"></ion-input>
     </ion-item>
 
 
