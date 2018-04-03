@@ -57,7 +57,7 @@ export class IssuesPage {
       const coords = position.coords;
       this.userLoc = new Marker([coords.latitude, coords.longitude]);
       this.userLoc.addTo(this.map);
-      this.map.setView([coords.latitude, coords.longitude], 14);
+      this.map.flyTo([coords.latitude, coords.longitude], 14);
       console.log(`User is at ${coords.longitude}, ${coords.latitude}`);
     }).catch(err => {
       console.warn(`Could not retrieve user position because: ${err.message}`);
