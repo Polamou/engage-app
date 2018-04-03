@@ -39,4 +39,9 @@ export class IssueProvider {
     const url = `${config.apiUrl}/issues/${id}`;
     return this.http.patch<Issue>(url, params);
   }
+
+  deleteIssue(id: String): Observable<Object>{
+    const url = `${config.apiUrl}/issues/${id}`;
+    return this.http.delete<Object>(url);
+  }
 }
