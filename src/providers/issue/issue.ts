@@ -18,9 +18,14 @@ export class IssueProvider {
     console.log('Hello IssueProvider Provider');
   }
 
-  getIssueList(): Observable<Issue[]>{
+  getIssueList(page?: number, pageSize?: number, search?: string): Observable<Issue[]>{
     const url = `${config.apiUrl}/issues`;
-    return this.http.get<Issue[]>(url);
+    var httpParams: any = {};
+    if(!page === false){httpParams.page = page.toString()};
+    if(!pageSize === false){httpParams.pageSize = pageSize.toString()};
+    if(!search === false){httpParams.search = search};
+    const options = {"params": httpParams}
+    return this.http.get<Issue[]>(url, options);
 
   }
 
@@ -44,4 +49,5 @@ export class IssueProvider {
     const url = `${config.apiUrl}/issues/${id}`;
     return this.http.delete<Object>(url);
   }
+
 }
