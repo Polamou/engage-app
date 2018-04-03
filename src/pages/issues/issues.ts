@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { latLng, MapOptions, tileLayer, Map, marker, Marker } from 'leaflet';
+import { latLng, MapOptions, tileLayer, Map, marker, Marker, Icon } from 'leaflet';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { config } from '../../app/config';
@@ -77,7 +77,7 @@ export class IssuesPage {
   }
   createMarker(issue: Issue){
     return marker([issue.location.coordinates[1],issue.location.coordinates[0]]).bindTooltip(issue.description).on('click',()=>{
-      console.log(issue.id);
+      this.navCtrl.push(SingleIssuePage, {issueId:issue.id });
     });
   }
 

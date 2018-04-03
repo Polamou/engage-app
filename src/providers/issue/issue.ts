@@ -25,7 +25,7 @@ export class IssueProvider {
   }
 
   getIssue(id: String): Observable<Issue>{
-    const url = `${config.apiUrl}/issues/${id}`;
+    const url = `${config.apiUrl}/issues/${id}?include=issueType`;
     return this.http.get<Issue>(url);
 
   }

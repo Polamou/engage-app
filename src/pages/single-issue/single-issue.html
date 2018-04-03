@@ -7,12 +7,16 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>SingleIssue</ion-title>
+    <ion-title>Issue</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-slides>
+    <ion-slide><img src="{{ issue?.imageUrl }}" width="100%" height="auto"/></ion-slide>
+  </ion-slides>
+    <p padding>Description : {{ issue?.description }}</p>
+    <p padding>Issue type : {{ issue?.issueType.name }}</p>
 </ion-content>
