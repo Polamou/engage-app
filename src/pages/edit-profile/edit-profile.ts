@@ -22,7 +22,7 @@ import { AuthProvider } from '../../providers/auth/auth';
   templateUrl: 'edit-profile.html',
 })
 export class EditProfilePage {
-  public userId: any;
+  public userId: String;
   public user: User;
 
   /**
@@ -43,6 +43,9 @@ export class EditProfilePage {
       console.log('user info requested from API');
       console.log(user);
       this.user = user;
+    },
+    err => {
+      console.error(`Could not get user info: ${err.message}`);
     });
   }
 
