@@ -5,6 +5,7 @@ import { Observable, ReplaySubject } from 'rxjs/Rx';
 import { config } from '../../app/config';
 import { Issue } from '../../models/issue';
 import { NewIssue } from '../../models/new-issue';
+import { Comment } from '../../models/comment';
 /*
   Generated class for the IssueProvider provider.
 
@@ -58,5 +59,14 @@ export class IssueProvider {
     if(!sort === false){httpParams.sort = sort};
     const options = {"params": httpParams}
     return this.http.post<Issue[]>(url, searchParams, options);
+  }
+
+  getIssueCommentList(issueId: String, page?: number, pageSize?: number): Observable<Comment[]>{
+    const url = `${config.apiUrl}/issues/${issueId}/comments`;
+    var httpParams: any = {};
+    if(!page === false){httpParams.page = page.toString()};
+    if(!pageSize === false){httpParams.pageSize = pageSize.toString()};
+    const options = {"params": httpParams}
+    return this.http.get<Comment[]>(url, options);
   }
 }
