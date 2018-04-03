@@ -28,6 +28,10 @@ export class SingleIssuePage {
     console.log('Hello IssueProvider Provider');
     this.issueId = navParams.get('issueId');
     console.log(this.issueId);
+
+    // test function - retrieves comment for current issue
+    this.getComments();
+
     this.issueProvider.getIssue(this.issueId).subscribe(issue => {
       console.log('Issue loaded');
       this.issue = issue;
@@ -37,6 +41,15 @@ export class SingleIssuePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SingleIssuePage');
+  }
+
+  getComments() {
+    this.issueProvider.getIssueCommentList(this.issueId).subscribe(comments => {
+      console.log('Comments requested');
+      console.log(comments);
+    }), err => {
+      console.warn('Could not get comments', err);
+    };
   }
 
 }
