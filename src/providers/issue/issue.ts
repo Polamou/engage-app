@@ -69,4 +69,11 @@ export class IssueProvider {
     const options = {"params": httpParams}
     return this.http.get<Comment[]>(url, options);
   }
+
+  addComment(issueId: String, text: String): Observable<Comment>{
+    var content = {"text": text}
+    const url = `${config.apiUrl}/issues/${issueId}/comments`;
+    return this.http.post<Comment>(url, content);
+
+  }
 }
