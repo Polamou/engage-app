@@ -46,6 +46,10 @@ export class IssuesPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssuesPage');
+    // test functions - make requests and log things in the console
+    this.searchIssues();
+    this.filterIssues();
+    
     this.issueProvider.getIssueList().subscribe(issues => {
       console.log('Issues loaded');
       this.issues = issues;
@@ -83,6 +87,29 @@ export class IssuesPage {
 
   goToSingleIssue(id: String) {
     this.navCtrl.push(SingleIssuePage, { issueId: id });
+  }
+
+  filterIssues(){
+    var search = "Raeh";
+    
+    this.issueProvider.getIssueList(1,1,search).subscribe(issues => {
+      console.log('Filtered issues requested');
+      console.log(issues);
+    });
+  }
+
+  searchIssues(){
+    var query = new Object;
+    query = {
+      "state": {
+        "$in": [ "new" ]
+      }
+    };
+    
+    this.issueProvider.searchIssues(query).subscribe(issues => {
+      console.log('Issues requested');
+      console.log(issues);
+    });
   }
 
 }
