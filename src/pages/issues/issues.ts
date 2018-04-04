@@ -42,16 +42,34 @@ export class IssuesPage {
         tileLayer(tileLayerUrl, tileLayerOptions)
       ],
       zoom: 8,
-      center: latLng(46.7, 7.5)
+      center: latLng(46.7, 6.7)
     };
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad IssuesPage');
-    // test functions - make requests and log things in the console
-    this.searchIssues();
-    this.filterIssues();
+
     
+    this.loadIssues();
+
+    const geolocationPromise = this.geolocation.getCurrentPosition();
+    geolocationPromise.then(position => {
+      const coords = position.coords;
+      let userIcon = new Icon({
+        iconUrl: 'assets/leaflet/images/current-location.png',
+        iconSize: [32,32],
+        iconAnchor: [16,16]
+      });
+      this.userLoc = new Marker([coords.latitude, coords.longitude],{icon:userIcon});
+      this.userLoc.addTo(this.map);
+      this.map.flyTo([coords.latitude, coords.longitude], 14);
+      console.log(`User is at ${coords.longitude}, ${coords.latitude}`);
+    }).catch(err => {
+      console.warn(`Could not retrieve user position because: ${err.message}`);
+    });
+
+  }
+
+  loadIssues(){
     this.issueProvider.getIssueList().subscribe(issues => {
       console.log('Issues loaded');
       this.issues = issues;
@@ -60,17 +78,6 @@ export class IssuesPage {
         this.createMarker(issue).addTo(this.map);
       })
     });
-    const geolocationPromise = this.geolocation.getCurrentPosition();
-    geolocationPromise.then(position => {
-      const coords = position.coords;
-      this.userLoc = new Marker([coords.latitude, coords.longitude]);
-      this.userLoc.addTo(this.map);
-      this.map.flyTo([coords.latitude, coords.longitude], 14);
-      console.log(`User is at ${coords.longitude}, ${coords.latitude}`);
-    }).catch(err => {
-      console.warn(`Could not retrieve user position because: ${err.message}`);
-    });
-
   }
   onMapReady(map: Map) {
     this.map = map;
@@ -82,7 +89,7 @@ export class IssuesPage {
 
   }
   createMarker(issue: Issue){
-    return marker([issue.location.coordinates[1],issue.location.coordinates[0]]).bindTooltip(issue.description).on('click',()=>{
+    return marker([issue.location.coordinates[1],issue.location.coordinates[0]]).on('click',()=>{
       this.goToSingleIssue(issue.id);
     });
   }
@@ -94,15 +101,21 @@ export class IssuesPage {
   openModalCreateIssue(){
       let modal = this.modalCtrl.create(CreateIssuePage,{userLoc:this.userLoc});
       modal.present();
+      modal.onDidDismiss(() => this.loadIssues());
   }
   
-  filterIssues(){
-    var search = "Raeh";
+  filterIssues(ev: any){
+    let val = ev.target.value;
     
-    this.issueProvider.getIssueList(1,1,search).subscribe(issues => {
-      console.log('Filtered issues requested');
-      console.log(issues);
+
+    if (val && val.trim() !== '') {
+      let previousIssues = this.issues;
+    this.issueProvider.searchIssues({searchParams: val}).subscribe(issues => {
+      this.issues = [];
+      this.issues = issues;
     });
+}
+    
   }
 
   searchIssues(){

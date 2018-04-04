@@ -15,6 +15,9 @@
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
+  <ion-toolbar no-border-top>
+      <ion-searchbar placeholder="Filter Items" (ionInput)="filterIssues($event)"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>

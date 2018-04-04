@@ -18,10 +18,10 @@
 </ion-header>
 
 <ion-content>
+    <div class="map-container">
+        <div id="map" leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers' (leafletMapReady)='onMapReady($event)'></div>
+    </div>
   <form (submit)="onSubmit($event)">
-  <div class="map-container">
-      <div id="map" leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers' (leafletMapReady)='onMapReady($event)'></div>
-  </div>
   <div class="issue-info">
       <ion-item>
           <ion-label floating>Description</ion-label>
@@ -44,13 +44,11 @@
           <ion-tags-input [(ngModel)]="newIssue.tags" name="tags" [separatorStr]="','" padding></ion-tags-input>
   </div>
   <ion-row>
-      <button ion-button full icon-end (click)="takePicture()">Take picture <ion-icon name="camera"></ion-icon></button>
+      <button ion-button type="button" full icon-end (click)="takePicture()">Take picture <ion-icon name="camera"></ion-icon></button>
     </ion-row>
   <ion-fab bottom right>
       <button ion-fab type='submit' [disabled]='form.invalid'><ion-icon name="checkmark"></ion-icon></button>
   </ion-fab>
-  <div *ngIf='pictureData'>
-  <img *ngFor="let picture of pictureData" src='data:image/jpeg;base64,{{ picture }}' />
-  </div>
+  <img *ngIf='pictureData' src='data:image/jpeg;base64,{{ picture }}' />
 </form>
 </ion-content>

@@ -51,7 +51,7 @@ export class CreateIssuePage {
     this.newIssue = new NewIssue();
     this.userLoc = new Marker(latLng(this.navParams.data.userLoc._latlng));
     this.mapMarkers = [];
-    this.tags = [];
+    this.newIssue.tags = [];
     this.mapMarkers.push(this.userLoc);
     let tileLayerUrl = `${config.mapboxApiUrl + config.mapboxToken}`;
     const tileLayerOptions = { maxZoom: 22 };
@@ -92,8 +92,14 @@ export class CreateIssuePage {
     event.preventDefault();
     console.log("Submitted");
 
+    this.newIssue.location = {
+      coordinates: [this.userLoc.getLatLng().lng,this.userLoc.getLatLng().lat], 
+      type: "Point"
+    }
     this.issueProvider.addIssue(this.newIssue).subscribe(issueResponse =>{
       console.log('issue sent to API');
+      console.log(issueResponse);
+      this.dismiss();
     });
   }
   dismiss(){
@@ -111,6 +117,7 @@ export class CreateIssuePage {
     this.camera.getPicture(options).then(pictureData => {
       this.pictureData = pictureData;
       this.qimgProvider.uploadImage(pictureData).subscribe(pictureResponse => {
+        console.log(pictureResponse.url);
         this.newIssue.imageUrl = pictureResponse.url;
       },err =>{
         console.warn(`Error uploading image : ${err}`);
