@@ -18,14 +18,14 @@
 </ion-header>
 
 <ion-content>
+  <form (submit)="onSubmit($event)">
   <div class="map-container">
       <div id="map" leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers' (leafletMapReady)='onMapReady($event)'></div>
   </div>
   <div class="issue-info">
       <ion-item>
           <ion-label floating>Description</ion-label>
-          <ion-input type='text' name='name'
-                     #descrInput='ngModel' [(ngModel)]='newIssue.description' required></ion-input>
+          <ion-input type='text' #descrInput='ngModel' [(ngModel)]='newIssue.description' name='description' required></ion-input>
         </ion-item>
         <!-- Error message displayed if the name is invalid -->
         <ion-item *ngIf='descrInput.invalid && descrInput.dirty' no-lines>
@@ -33,17 +33,24 @@
         </ion-item>
         <ion-item>
             <ion-label>Issue Type</ion-label>
-            <ion-select #issueTypeSelect='ngModel' [(ngModel)]='newIssue.issueType' required>
-              <ion-option *ngFor="let issueType of issueTypes" value="issueType.id">{{ issueType.name }}</ion-option>
+            <ion-select #issueType='ngModel' [(ngModel)]='newIssue.issueTypeHref' name="issueType" required multiple="false">
+              <ion-option *ngFor="let issueType of issueTypes" [value]="issueType.href" >{{ issueType.name }}</ion-option>
             </ion-select>
           </ion-item>
           <!-- Error message displayed if the name is invalid -->
-          <ion-item *ngIf='issueTypeSelect.invalid && issueTypeSelect.dirty' no-lines>
+          <ion-item *ngIf='issueType.invalid && issueType.dirty' no-lines>
             <p ion-text color='danger'>Description is required.</p>
           </ion-item>
-          <ion-tags-input [(ngModel)]="tags" [separatorStr]="','" padding></ion-tags-input>
+          <ion-tags-input [(ngModel)]="newIssue.tags" name="tags" [separatorStr]="','" padding></ion-tags-input>
   </div>
+  <ion-row>
+      <button ion-button full icon-end (click)="takePicture()">Take picture <ion-icon name="camera"></ion-icon></button>
+    </ion-row>
   <ion-fab bottom right>
-      <button ion-fab (click)="submitIssue()"><ion-icon name="checkmark"></ion-icon></button>
+      <button ion-fab type='submit' [disabled]='form.invalid'><ion-icon name="checkmark"></ion-icon></button>
   </ion-fab>
+  <div *ngIf='pictureData'>
+  <img *ngFor="let picture of pictureData" src='data:image/jpeg;base64,{{ picture }}' />
+  </div>
+</form>
 </ion-content>

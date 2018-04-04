@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Rx';
 import { first, switchMap } from 'rxjs/operators';
 
 import { AuthProvider } from '../auth/auth';
+import { config } from '../../app/config';
+
 
 @Injectable()
 export class AuthInterceptorProvider implements HttpInterceptor {
@@ -22,6 +24,14 @@ export class AuthInterceptorProvider implements HttpInterceptor {
       first(),
       switchMap(token => {
 
+
+        var regex = new RegExp('/.*comem-qimg.*/','g');
+        if (req.url.match(regex)!= null){
+            req = req.clone({
+            headers: req.headers.set('Authorization', `Bearer ${config.qimgSecret}`)
+          });
+          return next.handle(req);
+        }
         // Add it to the request if it doesn't already have an Authorization header.
         if (token && !req.headers.has('Authorization')) {
           req = req.clone({
@@ -33,5 +43,9 @@ export class AuthInterceptorProvider implements HttpInterceptor {
       })
     );
   }
+  regexEscape(string){
+    const regExpSyntaxCharacter = /[\^$\\.*+?()[\]{}|]/g;
+    return "(?](?)" + (string + "").replace(regExpSyntaxCharacter, "\\$&") + ")";
 
+  }
 }
