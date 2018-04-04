@@ -74,7 +74,6 @@ export class IssuesPage {
       console.log('Issues loaded');
       this.issues = issues;
       this.issues.forEach(issue =>{
-        console.log(issue);
         this.createMarker(issue).addTo(this.map);
       })
     });
@@ -109,14 +108,12 @@ export class IssuesPage {
     
 
     if (val && val.trim() !== '') {
-      let previousIssues = this.issues;
-    this.issueProvider.searchIssues({searchParams: val}).subscribe(issues => {
-      this.issues = [];
-      this.issues = issues;
-    });
+      this.issues = this.issues.filter(
+        issue => { console.log("Missing proper filter implementation.") }
+      );
+
+    }
 }
-    
-  }
 
   searchIssues(){
     var query = new Object;

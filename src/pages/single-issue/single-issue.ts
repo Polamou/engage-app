@@ -43,10 +43,6 @@ export class SingleIssuePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SingleIssuePage');
-    
-
-    // test function - retrieves comment for current issue
-    this.addComment();
     this.getComments();
   }
 
@@ -58,10 +54,9 @@ export class SingleIssuePage {
     };
   }
 
-  addComment(){
-    this.issueProvider.addComment(this.issueId, "A wise comment.").subscribe(comment => {
-      console.log('New comment sent');
-      //console.log(comment);
+  addComment(comment: string){
+    this.issueProvider.addComment(this.issueId, comment).subscribe(comment => {
+      // Do something
     }), err => {
       console.warn('Could not save new comment', err);
     };
