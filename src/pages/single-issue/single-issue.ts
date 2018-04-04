@@ -24,16 +24,18 @@ export class SingleIssuePage {
   public issueId: String;
   public issue: Issue;
   public comments: Comment[];
-  public user: User;
+  public newComment: string;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
-    public issueProvider: IssueProvider
+    public issueProvider: IssueProvider,
+    
   ) {
     this.issueId = navParams.get('issueId');
     this.comments = [];
+    this.newComment = "";
     this.issueProvider.getIssue(this.issueId).subscribe(issue => {
       console.log('Issue loaded');
       this.issue = issue;
@@ -53,13 +55,15 @@ export class SingleIssuePage {
       console.warn('Could not get comments', err);
     };
   }
-
+  sendComment(comment: string){
+    comment = this.newComment;
+    this.addComment(comment);
+  }
   addComment(comment: string){
     this.issueProvider.addComment(this.issueId, comment).subscribe(comment => {
-      // Do something
+      console.log(comment);
     }), err => {
       console.warn('Could not save new comment', err);
     };
   }
-
 }

@@ -45,13 +45,12 @@
     </ion-item>
     <ion-item>
         <ion-label floating>Add a comment</ion-label>
-        <ion-input type="text"></ion-input>
-        <button ion-button clear item-end>Send</button></ion-item>
+        <ion-input type="text" [(ngModel)]='newComment'></ion-input>
+        <button ion-button clear item-end (click)="addComment(newComment)">Send</button></ion-item>
     <ion-list>
       <ion-list-header>Comments</ion-list-header>
-      <ion-input type="text"></ion-input>
       <ion-item text-wrap *ngFor="let comment of comments">
-        <h4>{{ comment.author.name }}, on {{ comment.createdAt | date : longDate}}</h4>
+        <h4>{{ comment.author?.name }}, on {{ comment.createdAt | date : longDate}}</h4>
         <p>{{ comment.text }}</p>
       </ion-item>
     </ion-list>
