@@ -4,7 +4,8 @@ Cette application est le projet final du cours AppMob donné à la HEIG-VD pour 
 
 ## Installation 
 
-L'application s'attend à recevoir de votre part un fichier de configuration dans `src/app/config.ts`, vous trouverez un exemple dans `src/app/config.sample.ts`
+L'application s'attend à recevoir de votre part un fichier de configuration dans `src/app/config.ts`, vous trouverez un exemple dans [src/app/config.sample.ts](https://github.com/Polamou/engage-app/blob/master/src/app/config.sample.ts)
+
 ``` bash
 git clone git@github.com:Polamou/engage-app.git
 cd engage-app/
